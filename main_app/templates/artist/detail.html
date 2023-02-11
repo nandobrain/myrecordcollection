@@ -3,9 +3,9 @@
 
 <h1> Artist</h1>
 
-            <div class="card">
-            <div class="card-content">
-            <span class="card-title">{{ artist.artist }}</span>
+ <div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ artist.artist }}</span>
             <p>Genre: {{ artist.genre }}</p>
 
             </div>
@@ -42,8 +42,7 @@
 <div class="row">
   <div class="col s6">
     <h3>{{ artist.artist }}'s shows</h3>
-    {% if artist.show.count %}
-      {% for show in artist.shows.all %}
+ 
         <div class="card">
           <div class="card-content">
             <span class="card-title">
@@ -51,10 +50,35 @@
             </span>
           </div>
         </div>
-      {% endfor %}
-    {% else %}
-      <h5>No Shows </h5>
-    {% endif %}
+    
+   
+   
+    <div class="row">
+        <div class="col s6">
+          <h3>{{ artist.artist }}'s Shows</h3>
+          {% if artist.venues.count %}
+            {% for venue in venue.venues.all %}
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">
+                    A <span>{{ venue.city }}</span> {{ venue.name }}
+                  </span>
+                </div>
+                <div class="card-action">
+                  <form action="{% url 'disassoc_venue' artist.id venue.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">Remove</button>
+                  </form> 
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <h5>No shows</h5>
+          {% endif %}
+        </div>
+        <!-- Available venues will come after this line -->
 
+        </div>
+      </div>
 
 {% endblock %}

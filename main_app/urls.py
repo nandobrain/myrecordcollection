@@ -14,4 +14,9 @@ urlpatterns = [
     path('album/<int:pk>/update.', views.AlbumUpdate.as_view(), name='album_upgrade'),
     path('album/<int:pk>/delete.', views.AlbumDelete.as_view(), name='album_delete'),
     path('album/<int:album_id>', views.album_detail, name='album_detail'),
+    path('venue/', views.VenueList.as_view(), name='venue_index'),
+    path('venue/<int:pk>/', views.VenueDetail.as_view(), name='venue_detail'),
+    path('venue/create/', views.VenueCreate.as_view(), name='venue_create'),
+    path('venue/<int:pk>/update/', views.VenueUpdate.as_view(), name='venue_update'),
+    path('venue/<int:pk>/delete/', views.VenueDelete.as_view(), name='venue_delete'),
 ]

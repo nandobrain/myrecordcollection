@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Artist, Album
+from django.views.generic import ListView, DetailView
+from .models import Artist, Album, Venue
 
 artist = [
     {'artist': 'Judas Priest', 'genre': 'Metal'},
@@ -60,3 +61,21 @@ class AlbumUpdate(UpdateView):
 class AlbumDelete(DeleteView):
     model = Album
     success_url = '/album'
+
+class VenueList(ListView):
+  model = Venue
+
+class VenueDetail(DetailView):
+  model = Venue
+
+class VenueCreate(CreateView):
+  model = Venue
+  fields = '__all__'
+
+class VenueUpdate(UpdateView):
+  model = Venue
+  fields = ['name', 'city']
+
+class VenueDelete(DeleteView):
+  model = Venue
+  success_url = '/venue'

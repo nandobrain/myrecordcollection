@@ -5,22 +5,22 @@ from django.urls import reverse
 
 # Create your models here.
 
-class Show(models.Model):
+class Venue(models.Model):
+    name = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    venue = models.CharField(max_length=50)
     
     def __str__(self):
-        return self.city
+        return self.name
 
     def get_absolute_url(self):
-        return reverse('show_detail', kwargs={'pk': self.id})
+        return reverse('venue_detail', kwargs={'pk': self.id})
 
 
 
 class Artist(models.Model):
     artist = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
-    shows = models.ManyToManyField(Show)
+    venue = models.ManyToManyField(Venue)
     
     
 
