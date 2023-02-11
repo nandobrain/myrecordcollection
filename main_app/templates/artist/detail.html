@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1> Artist</h1>
+
+            <div class="card">
+            <div class="card-content">
+            <span class="card-title">{{ artist.artist }}</span>
+            <p>Genre: {{ artist.genre }}</p>
+
+            </div>
+            <div class="card-action">
+                <a href="{% url 'artist_update' artist.id %}">Edit</a>
+                <a href="{% url 'artist_delete' artist.id %}">Delete</a>
+            </div>
+            </div>
+            <br>
+            <ln></ln>
+            <h3>Albums</h3>
+
+
+                    <li><a href="{% url 'album_create' artist.id  %}"> Add album</a></li>
+                
+
+                {% for album in albums %}
+                <div class="card">
+                    <a href="{% url 'album_detail' album.id %}">
+                    <div class="card-content">
+                    <span class="card-title">{{ album.album }}</span>
+                    <p>Release date: {{ album.releaseDate }}</p>
+                    </div>
+                </a>
+                </div>
+                {% endfor %}
+            <br>
+            <ln></ln>
+
+            <br>
+            <ln></ln>
+    </div>
+    <hr>
+<div class="row">
+  <div class="col s6">
+    <h3>{{ artist.artist }}'s shows</h3>
+    {% if artist.show.count %}
+      {% for show in artist.shows.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+             
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Shows </h5>
+    {% endif %}
+
+
+{% endblock %}
